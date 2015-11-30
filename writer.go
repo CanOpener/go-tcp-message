@@ -27,6 +27,11 @@ func (c *conn) startWriter() {
 
 func (c *conn) setWriterListening(listening bool) {
 	c.WriterListening = listening
+	if listening {
+		c.InfoChan <- WriterStarted
+	} else {
+		c.InfoChan <- WriterStopped
+	}
 }
 
 func (c *conn) killWriter() {
