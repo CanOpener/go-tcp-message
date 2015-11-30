@@ -27,7 +27,7 @@ type conn struct {
 }
 
 func NewConnection(con net.Conn) conn {
-	return conn{
+	c := conn{
 		Netcon:            con,
 		IncommingMessages: make(chan *[]byte, 100),
 		InfoChan:          make(chan int, 5),
@@ -39,6 +39,10 @@ func NewConnection(con net.Conn) conn {
 		ReaderListening:   false,
 		WriterListening:   false,
 	}
+
+	go c.startReader()
+	go c.startWriter()
+	return c
 }
 
 func fatalLog(v ...interface{}) {
