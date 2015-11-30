@@ -11,6 +11,7 @@ type conn struct {
 	InfoChan          chan int
 	internalComsChan  chan int
 	outgoingMessages  chan *[]byte
+	writerKiller      chan bool
 	MessagesSent      int
 	MessagesReceived  int
 	ReaderListening   bool
@@ -24,6 +25,7 @@ func NewConnection(con net.Conn) conn {
 		InfoChan:          make(chan int, 5),
 		internalComsChan:  make(chan int, 5),
 		outgoingMessages:  make(chan *[]byte, 100),
+		writerKiller:      make(chan bool, 1),
 		MessagesSent:      0,
 		MessagesReceived:  0,
 		ReaderListening:   false,
