@@ -18,6 +18,7 @@ func (c *conn) startWriter() {
 			if err != nil {
 				fatalLog(err)
 			}
+			c.MessagesSent++
 		case <-c.writerKiller:
 			return
 		}
