@@ -46,3 +46,11 @@ func fatalLog(v ...interface{}) {
 	// logging function specified by the user
 	log.Fatalln(v)
 }
+
+func (c *conn) Close() {
+	err := c.netcon.Close()
+	if err != nil {
+		fatalLog(err)
+	}
+	c.killWriter()
+}
