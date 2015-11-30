@@ -15,7 +15,7 @@ func (c *conn) startReader() {
 	for {
 		buf := make([]byte, 1400)
 
-		dataSize, err := c.netcon.Read(buf)
+		dataSize, err := c.Netcon.Read(buf)
 		if err != nil {
 			c.InfoChan <- ConnectionClosed
 			return

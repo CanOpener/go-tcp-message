@@ -14,7 +14,7 @@ func (c *conn) startWriter() {
 			length := uint16(len(*m))
 			lenBytes := make([]byte, 2)
 			binary.LittleEndian.PutUint16(lenBytes, length)
-			_, err := c.netcon.Write(append(lenBytes, *m...))
+			_, err := c.Netcon.Write(append(lenBytes, *m...))
 			if err != nil {
 				fatalLog(err)
 			}

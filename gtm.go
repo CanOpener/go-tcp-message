@@ -14,7 +14,7 @@ const (
 )
 
 type conn struct {
-	netcon            net.Conn
+	Netcon            net.Conn
 	IncommingMessages chan *[]byte
 	InfoChan          chan int
 	internalComsChan  chan int
@@ -28,7 +28,7 @@ type conn struct {
 
 func NewConnection(con net.Conn) conn {
 	return conn{
-		netcon:            con,
+		Netcon:            con,
 		IncommingMessages: make(chan *[]byte, 100),
 		InfoChan:          make(chan int, 5),
 		internalComsChan:  make(chan int, 5),
@@ -48,7 +48,7 @@ func fatalLog(v ...interface{}) {
 }
 
 func (c *conn) Close() {
-	err := c.netcon.Close()
+	err := c.Netcon.Close()
 	if err != nil {
 		fatalLog(err)
 	}
