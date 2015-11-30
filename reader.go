@@ -17,7 +17,7 @@ func (c *conn) startReader() {
 
 		dataSize, err := c.netcon.Read(buf)
 		if err != nil {
-			// connection closed
+			c.InfoChan <- ConnectionClosed
 			return
 		}
 		data := buf[0:dataSize]
@@ -62,4 +62,9 @@ func (c *conn) startReader() {
 
 func (c *conn) setReaderListening(listening bool) {
 	c.ReaderListening = listening
+	if listening {
+		c.InfoChan <- ReaderStarted
+	} else {
+		c.InfoChan <- ReaderStopped
+	}
 }

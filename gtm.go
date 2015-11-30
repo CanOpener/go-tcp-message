@@ -5,6 +5,14 @@ import (
 	"net"
 )
 
+const (
+	WriterStopped = iota
+	ReaderStopped
+	ConnectionClosed
+	WriterStarted
+	ReaderStarted
+)
+
 type conn struct {
 	netcon            net.Conn
 	IncommingMessages chan *[]byte
