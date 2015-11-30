@@ -12,8 +12,8 @@ type conn struct {
 	internalComsChan  chan int
 	outgoingMessages  chan *[]byte
 	writerKiller      chan bool
-	MessagesSent      int
-	MessagesReceived  int
+	MessagesSent      uint64
+	MessagesReceived  uint64
 	ReaderListening   bool
 	WriterListening   bool
 }
